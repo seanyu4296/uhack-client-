@@ -53,7 +53,7 @@ class HomePage extends Component {
                         <ReactHighcharts config={this.state.config}></ReactHighcharts>
                     </CardMedia>
                     <CardTitle title="Card title" subtitle="Card subtitle" />
-                    <CardText>
+                    <CardText>  
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
                         Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
@@ -63,7 +63,7 @@ class HomePage extends Component {
                         <FlatButton label="Action1" />
                         <FlatButton label="Action2" />
                     </CardActions>
-                </Card>s
+                </Card>
             </div>
         );
     }

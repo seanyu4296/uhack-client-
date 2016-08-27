@@ -14,7 +14,7 @@ class App extends Component {
         }
 
         this.logout = this.logout.bind(this);
-        this.navBarStick = this.navBarStick.bind(this);
+        this.navBarResizing = this.navBarResizing.bind(this);
     };
 
    componentWillReceiveProps (nextProps) {
@@ -34,21 +34,32 @@ class App extends Component {
                 console.log(err);
             })
     }
-
-    navBarStick() {
-        $("#appbar").sticky({
-            responsiveWidth: true
-        });
-        $("#appbar").on('sticky-start', function(){
-		    
-		});
-		$(".navbar").on('sticky-end', function(){
-           
-		});
+    
+    componentWillReceiveProps() {
+        this.navBarResizing();
     }
 
+   	navBarResizing() {
+		$(".navbar").sticky({
+		    getWidthFrom: '.animsition',
+		    responsiveWidth: true
+		});
+		$(".navbar").on('sticky-start', function(){
+		    $(".navbar-logo").css("width", 85).attr('src', '/build/css/images/logo-white.png');
+		    $(".navbar-default .navbar-nav>li>a").css('font-size','12px');
+		    $(".navbar-default .navbar-nav>li>div>button").css('font-size','12px');
+		}); 
+		$(".navbar").on('sticky-end', function(){
+		    $(".navbar-logo").css("width", 120);
+		    $(".navbar-logo").attr('src', '/build/css/images/logo.png');
+		    $(".navbar-default .navbar-nav>li>a").css('font-size','14px');
+		    $(".navbar-default .navbar-nav>li>div>button").css('font-size','14px');
+		});
+	}
+
+
     componentDidMount() {
-        this.navBarStick();
+        this.navBarResizing();
     }
 
 

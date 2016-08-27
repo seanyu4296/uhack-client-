@@ -18,6 +18,7 @@ require('./favicon.ico');
 import './styles/styles.css';
 
 import { Route, IndexRoute } from 'react-router';
+//import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 
 import App from './components/App';
