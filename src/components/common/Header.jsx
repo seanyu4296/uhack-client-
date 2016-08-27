@@ -13,7 +13,7 @@ const Header = ({loggedIn, logout}) => {
     return (
        
         
-        <Navbar inverse>
+        <Navbar>
              {/*<AppBar
             id="appbar"
             title="UHACK"
@@ -31,7 +31,13 @@ const Header = ({loggedIn, logout}) => {
             <Navbar.Collapse>
                 <Nav>
                 </Nav>
-                <Nav pullRight>
+                <Nav id = "top-nav-collapse" pullRight>
+                    <LinkContainer to= "/dashboard">
+                        <MenuItem>Dashboard</MenuItem>
+                    </LinkContainer>
+                    <LinkContainer to= "/timeslots">
+                        <MenuItem>Time Slots</MenuItem>
+                    </LinkContainer>
                     <NavItem>Sean Yu</NavItem>
                     <NavDropdown eventKey={3} title='' id=''>
                         <MenuItem onClick={logout} eventKey= {3.2}>Logout</MenuItem>

@@ -15,6 +15,7 @@ export function login(userInput, cb) {
     return function(dispatch) {
         //dispatch(beginAjaxCall());
         return authApi.login(userInput, cb).then(loggedIn => {
+            console.log(loggedIn);
             dispatch(loginSuccess(loggedIn));
             return "Login success (this is a return for login thunk promise from api promise)";
         }).catch(error => {

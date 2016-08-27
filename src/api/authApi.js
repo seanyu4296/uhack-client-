@@ -21,27 +21,27 @@ class AuthenticationApi {
     }
 
     static login(user, cb, cbOnRegister) {
-        
+        console.log("USER: ", user);
         let login = new Promise((resolve, reject)=> {
-                superagent.post(config.url + 'login')
-                        .set(...config.api)
+                superagent.post("https://uhac-server.herokuapp.com/api/v1/login")
                         .set(...config.contentType)
                         .send(user)
                         .end((err, res) => {
+                            console.log(res);
                             if(!err) {
                                 return resolve(res.body);
                             }
-
-                            return reject(JSON.parse(res.text));
+                            console.log("RES: ", res);
+                            console.log(err);
+                            return reject(res);
                         });
         });
         
         return login.then((res) => {
             //console.log(res);
-            if(res.status >= 200 && res.status < 300) {
+            if(res.error == "null") {
                 //console.log(res, "======");
-                localStorage.token = res.result.session_token;
-                localStorage.uid = res.result.user.id;
+                localStorage.loggedIn = true;
                 //cb(false);
                 return true;
             } else {
@@ -107,7 +107,7 @@ class AuthenticationApi {
                             localStorage.uid = res.result.id;
                             return true;
                         } else {
-                            return false;
+                            return true;
                         }
                     });
         }

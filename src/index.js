@@ -16,7 +16,7 @@ import routes from './routes';
 import configureStore from './store/configureStore';
 require('./favicon.ico');
 import './styles/styles.css';
-
+import './styles/owl.theme.css';
 import { Route, IndexRoute } from 'react-router';
 //import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
@@ -25,6 +25,8 @@ import App from './components/App';
 import Homepage from './components/HomePage';
 import Login from './components/Login';
 import Logout from './components/Logout';
+import Landing from './components/landing/Landing';
+import UserInfo from './components/UserInfo'
 
 import NotFoundPage from './components/NotFoundPage';
 
@@ -52,7 +54,7 @@ function app() {
         /*console.log(loggedIn);*/
         if(!loggedIn) {
             replace({
-                pathname: '/login',
+                pathname: '/',
                 state: { nextPathname : nextState.location.pathname }
             })
         }
@@ -65,7 +67,11 @@ function app() {
             <Provider store={store} >
                 <Router history={history} >
                     <Route path="/" component ={App} >
-                        <IndexRoute component= {Homepage} onEnter={requireAuth}/>
+                        <IndexRoute component={Landing} />
+                        <Route path="/app" component= {Homepage} onEnter={requireAuth}>
+                            <Route path="userinfo" component= {UserInfo}></Route>
+
+                        </Route>
                         <Route path= "/login" component={Login}  />
                         <Route path="/logout" component={Logout}></Route>
                         <Route path= "*"  component= {NotFoundPage}></Route>

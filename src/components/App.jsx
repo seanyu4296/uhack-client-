@@ -41,7 +41,6 @@ class App extends Component {
 
    	navBarResizing() {
 		$(".navbar").sticky({
-		    getWidthFrom: '.animsition',
 		    responsiveWidth: true
 		});
 		$(".navbar").on('sticky-start', function(){
